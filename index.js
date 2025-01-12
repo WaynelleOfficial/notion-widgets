@@ -9,12 +9,14 @@ const all_quotes = [
 
 function getRandomQuote() {
     const lastQuoteIndex = localStorage.getItem('lastQuoteIndex');
-    const lastQuoteTime = localStorage.getItem('lastQuoteTime');
-    const currentTime = new Date().getTime();
+    const lastQuoteDate = localStorage.getItem('lastQuoteDate');
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentDay = currentDate.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
 
-    // Check if 24 hours have passed
-    if (lastQuoteTime && (currentTime - lastQuoteTime < 24 * 60 * 60 * 1000)) {
-        // If less than 24 hours, return the last quote
+    // Check if it's past 6 AM and if the date has changed
+    if (lastQuoteDate === currentDay && currentHour >= 6) {
+        // If it's the same day and past 6 AM, return the last quote
         return all_quotes[lastQuoteIndex];
     } else {
         let randomIndex;
@@ -22,10 +24,11 @@ function getRandomQuote() {
             randomIndex = Math.floor(Math.random() * all_quotes.length);
         } while (randomIndex == lastQuoteIndex); // Ensure it's a different quote
 
-        // Store the new quote index and time
+        // Store the new quote index and date
         localStorage.setItem('lastQuoteIndex', randomIndex);
-        localStorage.setItem('lastQuoteTime', currentTime);
+        localStorage.setItem('lastQuoteDate', currentDay);
         return all_quotes[randomIndex];
     }
 }
+
 document.getElementById('quote').textContent = getRandomQuote();
