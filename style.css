@@ -47,3 +47,49 @@ body, html {
     
 }
 
+
+
+
+
+
+.clock-container{
+    height: 100vh; /* Full height of the viewport */
+    background: radial-gradient(circle,  rgb(248, 210, 234) 3%, rgb(0, 204, 255) 20%, rgb(248, 210, 234) 30%);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Positioning context for the overlay */
+    overflow: hidden; /* Prevent overflow */
+    z-index: 1;
+}
+.clock-container::after {
+    content: '';
+    position: absolute; /* Position the overlay absolutely */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/grainOverlay2.png'); /* Path to your grain texture */
+    background-size: cover; /* Ensure the grain texture covers the entire area */
+    opacity: 0.17; /* Adjust opacity for the desired effect */
+    pointer-events: none; /* Prevent interaction with the overlay */
+    z-index: 2;
+}
+.clock-container label{
+    margin-left:2%;
+    font-size: 1rem;
+}
+.clock-container select{
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.clock{
+    display: flex;
+    height: 75vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent overflow */
+    font-family: "Gabriela", serif;
+    font-size: 5rem;
+    text-shadow: 2px 2px rgb(249 232 243);
+}

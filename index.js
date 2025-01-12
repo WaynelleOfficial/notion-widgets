@@ -1,4 +1,5 @@
 
+function runQuotePageCode() {
 const all_quotes = [
     "What if it all works out?",
     "This too shall pass",
@@ -32,3 +33,55 @@ function getRandomQuote() {
 }
 
 document.getElementById('quote').textContent = getRandomQuote();
+}
+
+
+
+
+function runClockPageCode() {
+// CLOCK
+
+const clock = document.getElementById('clock');
+const cityDropdown = document.getElementById('city');
+
+// Function to update the clock
+function updateClock() {
+    const selectedCity = cityDropdown.value;
+    console.log(selectedCity);
+    const now = new Date();
+    console.log(now);
+
+    // Get the time in the selected city's timezone in 12-hour format
+    const options = { 
+        timeZone: selectedCity, 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: undefined, // Remove seconds
+        hour12: true // Enable 12-hour format
+    };
+
+    const cityTime = new Intl.DateTimeFormat("en-US", options).format(now);
+    console.log(cityTime);
+
+    // Convert "AM" and "PM" to lowercase for consistency
+    const formattedTime = cityTime.replace(/AM|PM/, match => match.toLowerCase());
+
+    // Display the formatted time
+    clock.textContent = formattedTime;
+}
+
+// Event listener for dropdown change
+cityDropdown.addEventListener('change', updateClock);
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initialize clock on page load
+updateClock();
+}
+
+if (window.location.pathname.includes("clock.html")) {
+    runClockPageCode();
+} else if (window.location.pathname.includes("quotes.html")) {
+    runQuotePageCode();
+} 
