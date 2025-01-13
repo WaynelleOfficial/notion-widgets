@@ -54,7 +54,7 @@ body, html {
 
 .clock-container{
     height: 100vh; /* Full height of the viewport */
-    background: radial-gradient(circle,  rgb(248, 210, 234) 3%, rgb(0, 204, 255) 20%, rgb(248, 210, 234) 30%);
+    background: radial-gradient(circle,  rgb(252, 222, 241) 15%, rgb(247, 201, 230) 50%, rgb(245, 143, 208) 70%);
     /* display: flex; */
     justify-content: center;
     align-items: center;
@@ -85,7 +85,7 @@ body, html {
 }
 .clock{
     display: flex;
-    height: 75vh;
+    height: 100vh;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Prevent overflow */
